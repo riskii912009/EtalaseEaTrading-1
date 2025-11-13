@@ -3,21 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EA MT5 Shop - Trading Bot Premium untuk Profit Maksimal</title>
+    <title>EA MT4 & MT5 Shop - Trading Bot Premium untuk Profit Maksimal</title>
     <style>
-   * {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+* {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
 body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0; padding: 0;
-    background: linear-gradient(135deg, #000000 0%, #001122 50%, #002244 100%); /* Dark blue-black gradient */
-    color: white;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #1a1a2e 100%);
+    color: #ffffff;
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
+    line-height: 1.6;
 }
-/* Efek BG Neon Cyan & Purple Berjalan */
+
+/* Enhanced Background Effects */
 body::before {
     content: '';
     position: fixed;
@@ -25,31 +31,47 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.3) 0%, transparent 60%),
-                radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.2) 0%, transparent 60%),
-                radial-gradient(circle at 40% 40%, rgba(0, 255, 255, 0.25) 0%, transparent 60%),
-                radial-gradient(circle at 60% 60%, rgba(138, 43, 226, 0.15) 0%, transparent 60%);
-    animation: neonGlow 15s ease-in-out infinite;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 69, 0, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 60% 60%, rgba(0, 255, 127, 0.05) 0%, transparent 50%);
+    animation: ambientGlow 20s ease-in-out infinite;
     z-index: -1;
     pointer-events: none;
 }
-@keyframes neonGlow {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.7; filter: blur(0px) hue-rotate(0deg); }
-    25% { transform: translate(30px, -30px) rotate(90deg); opacity: 1; filter: blur(3px) hue-rotate(90deg); }
-    50% { transform: translate(-30px, 30px) rotate(180deg); opacity: 0.9; filter: blur(5px) hue-rotate(180deg); }
-    75% { transform: translate(50px, 50px) rotate(270deg); opacity: 1; filter: blur(2px) hue-rotate(270deg); }
+
+@keyframes ambientGlow {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.8;
+        filter: hue-rotate(0deg);
+    }
+    33% {
+        transform: translate(20px, -20px) scale(1.05);
+        opacity: 1;
+        filter: hue-rotate(120deg);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.95);
+        opacity: 0.9;
+        filter: hue-rotate(240deg);
+    }
 }
 header {
-    background: rgba(0,0,0,0.9);
-    padding: 15px 20px;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 20px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 3px solid #00FFFF; /* Cyan accent */
-    box-shadow: 0 4px 10px rgba(0, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     position: sticky;
     top: 0;
     z-index: 10;
+    transition: all 0.3s ease;
 }
 .header-left {
     flex: 0 0 auto;
@@ -60,6 +82,30 @@ header {
 }
 .header-center h1 { margin: 0; font-weight: 700; font-size: 1.8em; }
 .header-center p { margin: 5px 0; font-weight: 300; }
+.platform-toggle {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+.platform-btn {
+    background: rgba(0, 255, 255, 0.2);
+    color: #00FFFF;
+    border: 1px solid #00FFFF;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.platform-btn.active {
+    background: #00FFFF;
+    color: black;
+}
+.platform-btn:hover {
+    background: #008080;
+    color: white;
+}
 .header-right {
     flex: 0 0 auto;
 }
@@ -241,9 +287,11 @@ header {
     transform: scale(1.2);
     accent-color: #00FFFF;
 }
-.method-details { 
-    font-size: 14px; 
+.method-details {
+    font-size: 14px;
     flex: 1;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 .method-details img { 
     max-width: 150px; 
@@ -382,6 +430,10 @@ footer {
     .ea-card img { height: 120px; }
     #cart { padding: 15px; }
     header { padding: 10px 15px; }
+    .method-details { font-size: 12px; }
+    .payment-methods ol { font-size: 12px; }
+    .method-details img { max-width: 120px; }
+    .method-option { padding: 10px; }
 }
 
     </style>
@@ -392,8 +444,12 @@ footer {
             <button class="cart-toggle" onclick="scrollToPayment()">🛒 Keranjang (<span id="cart-count">0</span>)</button>
         </div>
         <div class="header-center">
-            <h1>🛒 EA MT5 Shop - Premium Trading Bots</h1>
+            <h1>🛒 EA MT4 & MT5 Shop - Premium Trading Bots</h1>
             <p>Tingkatkan Trading Anda dengan EA Terbaik!</p>
+            <div class="platform-toggle">
+                <button id="mt4-btn" class="platform-btn active" onclick="switchPlatform('mt4')">MT4</button>
+                <button id="mt5-btn" class="platform-btn" onclick="switchPlatform('mt5')">MT5</button>
+            </div>
         </div>
         <div class="header-right">
             <!-- Kosong untuk balance -->
@@ -402,8 +458,8 @@ footer {
 
     <div class="container">
         <section class="hero">
-            <h2>Selamat Datang di Toko EA MT5 Kami</h2>
-            <p>Pilih dari 6 EA unggulan kami untuk profit maksimal!</p>
+            <h2>Selamat Datang di Toko EA MT4 & MT5 Kami</h2>
+            <p>Pilih dari EA MT4 & MT5 unggulan kami untuk profit maksimal!</p>
         </section>
 
         <section class="etalase">
@@ -412,52 +468,7 @@ footer {
                 <h3>Martingle Biasa</h3>
                 <p>EA scalping untuk profit harian</p>
                 <p><strong>Harga: Rp250.000</strong></p>
-                <button class="add-cart" onclick="addToCart('Martingle Biasa', 250000)">Tambah ke Keranjang</button>
-                <button class="explanation-btn" onclick="showExplanation('Martingle Biasa')">Penjelasan</button>
-            </div>
-            <div class="ea-card">
-                <img src="fo.jpg" alt="SuperProfit EA">
-                <h3>Martingle equity</h3>
-                <p>EA scalping untuk Target harian Karna Ea stop Di Targetkan</p>
-                <p><strong>Harga: Rp320.000</strong></p>
-                <button class="add-cart" onclick="addToCart('Martingle Equity', 320000)">Tambah ke Keranjang</button>
-                <button class="explanation-btn" onclick="showExplanation('Martingle Equity')">Penjelasan</button>
-            </div>
-
-            <div class="ea-card">
-                <img src="fo.jpg" alt="TrendMaster EA">
-                <h3>Ea Counter Langsung</h3>
-                <p>Ea Scalping Agresive + Profitable</p>
-                <p><strong>Harga: Rp410.000</strong></p>
-                <button class="add-cart" onclick="addToCart('Ea Counter Langsung', 410000)">Tambah ke Keranjang</button>
-                <button class="explanation-btn" onclick="showExplanation('Ea Counter Langsung')">Penjelasan</button>
-            </div>
-
-            <div class="ea-card">
-                <img src="smple.jpg" alt="GoldHunter EA">
-                <h3>Marting Biasa + DD + Lot Multy & Step</h3>
-                <p>Ea Scalpinng Low Resiko</p>
-                <p><strong>Harga: Rp450.000</strong></p>
-                <button class="add-cart" onclick="addToCart('Marting Biasa + DD + Lot Multy & Step', 450000)">Tambah ke Keranjang</button>
-                <button class="explanation-btn" onclick="showExplanation('Marting Biasa + DD + Lot Multy & Step')">Penjelasan</button>
-            </div>
-
-            <div class="ea-card">
-                <img src="smple.jpg" alt="NewsTrader EA">
-                <h3>Marting Equity + DD + Lot Multy & Step</h3>
-                <p>EA Scalping Equity Target Saldo Ea Mati</p>
-                <p><strong>Harga: Rp500.000</strong></p>
-                <button class="add-cart" onclick="addToCart('Marting Equity + DD + Lot Multy & Step', 500000)">Tambah ke Keranjang</button>
-                <button class="explanation-btn" onclick="showExplanation('Marting Equity + DD + Lot Multy & Step')">Penjelasan</button>
-            </div>
-
-            <div class="ea-card">
-                <img src="smple.jpg" alt="MultiPair EA">
-                <h3>Marting Langsung 0.02 + DD + Lot Multy & Step</h3>
-                <p> Ea Cocok Cari Profit Karna Fitur Sudah Lengkap Dari Pada Yang Di Atas</p>
-                <p><strong>Harga: Rp570.000</strong></p>
-                <button class="add-cart" onclick="addToCart('Marting Langsung 0.02 + DD + Lot Multy & Step', 570000)">Tambah ke Keranjang</button>
-                <button class="explanation-btn" onclick="showExplanation('Marting Langsung 0.02 + DD + Lot Multy & Step')">Penjelasan</button>
+                <button class="explanation-btn" onclick="showExplanation('Martingle Biasa')"></button>
             </div>
         </section>
 
@@ -522,7 +533,7 @@ footer {
     </div>
 
     <footer>
-        <p>&copy; 2023 EA MT5 Shop. Kontak: WA 081252636815 | Email: riskislebew45@gmail.com</p>
+        <p>&copy; 2023 EA MT4 & MT5 Shop. Kontak: WA 081252636815 | Email: riskislebew45@gmail.com</p>
     </footer>
 
     <!-- Modal -->
@@ -597,13 +608,13 @@ footer {
                 let detailText = '';
                 if (selectedMethod === 'dana') {
                     methodText = 'DANA';
-                    detailText = 'ke 0812-3456-7890 (Atas Nama:M.DWI RISKI)';
+                    detailText = 'ke 082150102225 (Atas Nama:M.DWI RISKI)';
                 } else if (selectedMethod === 'qris') {
                     methodText = 'QRIS';
                     detailText = '(scan gambar di website)';
                 } else if (selectedMethod === 'seabank') {
                     methodText = 'SeaBank';
-                    detailText = '(SeaBank: 0987654321 Atas Nama: M.DWI RISKI)';
+                    detailText = '(SeaBank: 901437148557 Atas Nama: M.DWI RISKI)';
                 }
                 const waText = `Halo! Saya mau beli: ${itemsText}. Total: Rp ${total.toLocaleString('id-ID')}. Metode: ${methodText} ${detailText}. Saya bayar sekarang, abis bayar saya kirim SS bukti ke sini ya. ID Pesanan: ${Date.now()}.`;
                 document.getElementById('wa-btn').href = `https://wa.me/6281252636815?text=${encodeURIComponent(waText)}`;
@@ -640,6 +651,7 @@ footer {
                     content = `
                         <p><strong>Martingle Biasa (Basic)</strong> - EA scalping sederhana tanpa fitur tambahan.</p>
                         <ul>
+                            <li><strong>Set Ea:</strong>A LOT/ B POINT COUNTER / C MAX COUNTER .</li>
                             <li><strong>Strategi:</strong> Martingale biasa, counter awal 0.01, terus martingale sampai profit .</li>
                             <li><strong>Target:</strong> Profit harian 10-20%, tapi EA terus jalan tanpa stop otomatis .</li>
                             <li><strong>Risiko:</strong> Tidak Ada Fitur DD & Equity Target.</li>
@@ -652,6 +664,7 @@ footer {
                     content = `
                         <p><strong>Martingle Equity (Basic)</strong> - EA scalping dengan target equity, EA mati otomatis.</p>
                         <ul>
+                            <li><strong>Set Ea:</strong>A LOT/ B POINT COUNTER / C MAX COUNTER .</li>
                             <li><strong>Strategi:</strong> Martingale dengan target saldo, counter awal 0.01, EA stop kalau equity capai target.</li>
                             <li><strong>Target:</strong> Profit harian 10-15%, fokus equity bukan floating, EA mati setelah profit.Misal Saldo Awal 100 Kita setting/input 200 jika ea profit2 hingga saldo/balance 200 ea akan mati</li>
                             <li><strong>Risiko:</strong> Lebih aman dari biasa karena stop otomatis, tapi masih tanpa DD control.</li>
@@ -664,6 +677,7 @@ footer {
                     content = `
                         <p><strong>Ea Counter Langsung (Pro)</strong> - EA scalping agresif, counter langsung tanpa delay.</p>
                         <ul>
+                            <li><strong>Set Ea:</strong>A LOT/ B POINT COUNTER/ C MAX COUNTER/ D CLOSE TARGET/ E EA MATI DI BALANCE .</li>
                             <li><strong>Strategi:</strong> Counter trend langsung dari awal 0.02, agresif tanpa martingale lambat.</li>
                             <li><strong>Target:</strong> Profit tinggi cepat, cocok scalper.</li>
                             <li><strong>Risiko:</strong> Agresif, floating bisa tinggi, cocok trader berpengalaman.</li>
@@ -708,10 +722,33 @@ footer {
                         </ul>
                     `;
                     break;
+
+       case 'Pro Martingle Equity':
+    content = `
+        <p><strong>Pro Martingle Equity (MT4)</strong> - EA martingale dengan target equity dan fitur aman.</p>
+        <ul>
+            <li><strong>Strategi:</strong> Buy Dan Sel Counter Martingale otomatis, EA berhenti saat equity capai target.</li>
+            <li><strong>Fitur:</strong> Equity stop, auto close semua posisi saat profit sesuai input.</li>
+            <li><strong>Risiko:</strong> Aman karena ada kontrol equity.</li>
+            <li><strong>Rekomendasi:</strong> Cocok untuk scalping profit harian tanpa pantauan manual.</li>
+        </ul>
+    `;
+    break;
+
+
                 default:
                     content = '<p>Penjelasan tidak tersedia.</p>';
             }
             body.innerHTML = content;
+            modal.style.display = 'flex';
+        }
+
+        function showExample(eaName, imagePath) {
+            const modal = document.getElementById('explanation-modal');
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+            title.textContent = `Contoh Input ${eaName}`;
+            body.innerHTML = `<img src="${imagePath}" alt="Contoh Input ${eaName}" style="max-width: 100%;">`;
             modal.style.display = 'flex';
         }
 
@@ -726,6 +763,96 @@ footer {
                 modal.style.display = 'none';
             }
         }
+
+        let currentPlatform = 'mt5';
+window.onload = function() {
+    switchPlatform('mt5');
+};
+
+
+        function switchPlatform(platform) {
+            currentPlatform = platform;
+            const mt4Btn = document.getElementById('mt4-btn');
+            const mt5Btn = document.getElementById('mt5-btn');
+            const etalase = document.querySelector('.etalase');
+
+            if (platform === 'mt4') {
+                mt4Btn.classList.add('active');
+                mt5Btn.classList.remove('active');
+                etalase.innerHTML = `
+                    <div class="ea-card">
+                        <img src="fo.jpg" alt="SuperProfit EA">
+                        <h3>Pro Martingle Equity MT4</h3>
+                        <p>EA scalping untuk profit harian</p>
+                        <p><strong>Harga: Rp400.000</strong></p>
+                        <button class="add-cart" onclick="addToCart('Pro Martingle equity', 400000)">Tambah ke Keranjang</button>
+                        <button class="explanation-btn" onclick="showExplanation('Pro Martingle Equity')">Penjelasan</button>
+                       <button class="explanation-btn" onclick="showExample('Pro Martingle Equity', 'MT4MARTINGLEEQUITY.png')">Cek Contoh Input</button>
+                    </div>
+                `;
+            } else if (platform === 'mt5') {
+                mt5Btn.classList.add('active');
+                mt4Btn.classList.remove('active');
+                etalase.innerHTML = `
+                    <div class="ea-card">
+                        <img src="fo.jpg" alt="SuperProfit EA">
+                        <h3> Basic Biasa Marting MT5</h3>
+                        <p>EA scalping untuk profit harian</p>
+                        <p><strong>Harga: Rp250.000</strong></p>
+                        <button class="add-cart" onclick="addToCart('Martingle Biasa MT5', 250000)">Tambah ke Keranjang</button>
+                        <button class="explanation-btn" onclick="showExplanation('Martingle Biasa')">Penjelasan</button>
+                        <button class="explanation-btn" onclick="showExample('Martingle Biasa MT5', 'martinglebiasabesic.png')">Cek Contoh Input</button>
+                    </div>
+                    <div class="ea-card">
+                        <img src="fo.jpg" alt="SuperProfit EA">
+                        <h3>Martingle equity MT5</h3>
+                        <p>EA scalping untuk Target harian Karna Ea stop Di Targetkan</p>
+                        <p><strong>Harga: Rp320.000</strong></p>
+                        <button class="add-cart" onclick="addToCart('Martingle Equity MT5', 320000)">Tambah ke Keranjang</button>
+                        <button class="explanation-btn" onclick="showExplanation('Martingle Equity')">Penjelasan</button>
+                        <button class="explanation-btn" onclick="showExample('Martingle Equity MT5', 'BASICEQUITY.png')">Cek Contoh Input</button>
+                    </div>
+                    <div class="ea-card">
+                        <img src="fo.jpg" alt="TrendMaster EA">
+                        <h3>Ea Counter Langsung MT5</h3>
+                        <p>Ea Scalping Agresive + Profitable</p>
+                        <p><strong>Harga: Rp410.000</strong></p>
+                        <button class="add-cart" onclick="addToCart('Ea Counter Langsung MT5', 410000)">Tambah ke Keranjang</button>
+                        <button class="explanation-btn" onclick="showExplanation('Ea Counter Langsung')">Penjelasan</button>
+                        <button class="explanation-btn" onclick="showExample('Ea Counter Langsung MT5', 'PROCOUNTERBESIC.png')">Cek Contoh Input</button>
+                    </div>
+                    <div class="ea-card">
+                        <img src="smple.jpg" alt="GoldHunter EA">
+                        <h3>Marting Biasa + DD + Lot Multy & Step MT5</h3>
+                        <p>Ea Scalpinng Low Resiko</p>
+                        <p><strong>Harga: Rp450.000</strong></p>
+                        <button class="add-cart" onclick="addToCart('Marting Biasa + DD + Lot Multy & Step MT5', 450000)">Tambah ke Keranjang</button>
+                        <button class="explanation-btn" onclick="showExplanation('Marting Biasa + DD + Lot Multy & Step')">Penjelasan</button>
+                        <button class="explanation-btn" onclick="showExample('Marting Biasa + DD + Lot Multy & Step MT5', 'PROBISA.png')">Cek Contoh Input</button>
+                    </div>
+                    <div class="ea-card">
+                        <img src="smple.jpg" alt="NewsTrader EA">
+                        <h3>Marting Equity + DD + Lot Multy & Step MT5</h3>
+                        <p>EA Scalping Equity Target Saldo Ea Mati</p>
+                        <p><strong>Harga: Rp500.000</strong></p>
+                        <button class="add-cart" onclick="addToCart('Marting Equity + DD + Lot Multy & Step MT5', 500000)">Tambah ke Keranjang</button>
+                        <button class="explanation-btn" onclick="showExplanation('Marting Equity + DD + Lot Multy & Step')">Penjelasan</button>
+                        <button class="explanation-btn" onclick="showExample('Marting Equity + DD + Lot Multy & Step MT5', 'PROEQUITY.png')">Cek Contoh Input</button>
+                    </div>
+                    <div class="ea-card">
+                        <img src="smple.jpg" alt="MultiPair EA">
+                        <h3>Marting Langsung 0.02 + DD + Lot Multy & Step MT5</h3>
+                        <p> Ea Cocok Cari Profit Karna Fitur Sudah Lengkap Dari Pada Yang Di Atas</p>
+                        <p><strong>Harga: Rp570.000</strong></p>
+                        <button class="add-cart" onclick="addToCart('Marting Langsung 0.02 + DD + Lot Multy & Step MT5', 570000)">Tambah ke Keranjang</button>
+                        <button class="explanation-btn" onclick="showExplanation('Marting Langsung 0.02 + DD + Lot Multy & Step')">Penjelasan</button>
+                        <button class="explanation-btn" onclick="showExample('Marting Langsung 0.02 + DD + Lot Multy & Step MT5', 'PROCOUNTERLANGSUNG.png')">Cek Contoh Input</button>
+                    </div>
+                `;
+            }
+        }
+        
     </script>
+    
 </body>
 </html>
